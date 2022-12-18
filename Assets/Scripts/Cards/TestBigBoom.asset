@@ -24,4 +24,4 @@ MonoBehaviour:
   Damage: 0
   FireRatePercent: 0
   DamagePercent: 0.1
-  BulletSize: 2
+  BulletSize: 100

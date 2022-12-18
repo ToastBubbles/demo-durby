@@ -13,10 +13,10 @@ public class CardInventory : MonoBehaviour
     [SerializeField] CardDatabase inventory;
 
     private int maxCardsAllowed = 100;
-    
+
     void Start()
     {
-        
+
     }
 
 
@@ -26,16 +26,25 @@ public class CardInventory : MonoBehaviour
     }
     public void Equip(Card card)
     {
-        if(card)
+        if (card)
+        {
             card.Equip(this);
-        
+            cards.Add(card);
+            RefreshStats();
+        }
+
     }
     public void Unequip(Card card)
     {
-        if(card)
-        card.UnEquip(this);
+        if (card)
+        {
+            card.UnEquip(this);
+            cards.Remove(card);
+            RefreshStats();
+        }
+
     }
-    public bool AddCard (Card card)
+    public bool AddCard(Card card)
     {
         if (IsFull())
             return false;
@@ -57,5 +66,10 @@ public class CardInventory : MonoBehaviour
     public bool IsFull()
     {
         return cards.Count >= maxCardsAllowed;
+    }
+
+    private void RefreshStats()
+    {
+
     }
 }
