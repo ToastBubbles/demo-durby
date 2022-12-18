@@ -25,6 +25,7 @@ public class CardSlot : MonoBehaviour
     void Clicked()
     {
         Debug.Log("You have clicked the button!");
+        Debug.Log(currentCard);
         inv.Equip(currentCard);
         parent.Clicked();
     }
@@ -32,30 +33,30 @@ public class CardSlot : MonoBehaviour
 
     void Update()
     {
-       // Debug.Log(id);
+        // Debug.Log(id);
     }
 
     public void UpdateCard(int cardID)
     {
         id = cardID;
-        SetCard();
+        SetCard(id);
     }
 
-    private void SetCard()
+    private void SetCard(int ident)
     {
-        for (int i = 0; i < database.Cards.Length; i++)
-        {
-            if(database.Cards[i].CardID == id)
-            {
-                
-                currentCard = database.Cards[i];
+        // for (int i = 0; i < database.Cards.Length; i++)
+        // {
+        //     if (database.Cards[i].CardID == id)
+        //     {
 
-                img.sprite = currentCard.Icon;
-                title.text = currentCard.CardName;
-                desc.text = currentCard.Description;
+        currentCard = database.Cards[ident];
+        //this.gameObject.transform.GetChild(0).GetComponent<Image>() = currentCard.Icon;
+        img.sprite = currentCard.Icon;
+        title.text = currentCard.CardName;
+        desc.text = currentCard.Description;
 
-            }
-        }
+        //         }
+        //     }
     }
 
 
