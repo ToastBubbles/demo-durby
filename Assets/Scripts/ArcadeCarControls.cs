@@ -28,7 +28,7 @@ public class ArcadeCarControls : MonoBehaviour
 
     public bool snappyTurret = false;
     public Transform lookAtTarget;
-    
+
 
     public float forwardAcceleration = 8000f;
     public float reverseAcceleration = 4000f;
@@ -60,9 +60,10 @@ public class ArcadeCarControls : MonoBehaviour
     }
     void Update()
     {
-        
+
 
         Quaternion turretSnap = Quaternion.Euler(Input.GetAxis("Mouse Y") * 50, turret.transform.GetChild(0).localEulerAngles.y, turret.transform.GetChild(0).localEulerAngles.z);
+        //Quaternion turretSnap = Quaternion.Euler(Input.GetAxis("Mouse Y") * 50, turret.transform.GetChild(0).localEulerAngles.y, turret.transform.GetChild(0).localEulerAngles.z);
 
         if (turrectControlType == 1)
         {
@@ -70,16 +71,19 @@ public class ArcadeCarControls : MonoBehaviour
             if (snappyTurret)
             {
                 turret.transform.GetChild(0).localRotation = Quaternion.Slerp(turret.transform.GetChild(0).localRotation, turretSnap, Time.deltaTime * 5);
+
             }
             else
             {
                 angle += (Input.GetAxis("Mouse Y") * sensitivity);
                 angle = Mathf.Clamp(angle, -90, 15);
                 turret.transform.GetChild(0).localRotation = Quaternion.Euler(angle, 0f, 0f);
+
             }
         }
         else
         {
+
             //turret.transform.GetChild(0).localRotation
             //Vector3 direction = lookAtTarget.position - turret.transform.GetChild(0).position;
             //Quaternion toRotation = Quaternion.FromToRotation(turret.transform.GetChild(0).forward, direction);
@@ -125,10 +129,41 @@ public class ArcadeCarControls : MonoBehaviour
             //  transform.rotation = q;
 
 
+            // Vector3 relativePos = lookAtTarget.position - turret.transform.position;
+
+            // Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            // turret.transform.rotation = rotation;
+
+
+
+            // Vector3 relativePos = lookAtTarget.position - turret.transform.position;
+
+            // Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+
+            // turret.transform.rotation = rotation;
+
+            // turret.transform.localEulerAngles = new Vector3(Quaternion.identity.x, rotation.eulerAngles.y, Quaternion.identity.z);
+
+
+
             Vector3 relativePos = lookAtTarget.position - turret.transform.position;
+
             Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-            //rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, 0);
+            rotation.eulerAngles = new Vector3(this.transform.rotation.eulerAngles.x, rotation.eulerAngles.y, this.transform.rotation.eulerAngles.z);
             turret.transform.rotation = rotation;
+
+            // Quaternion q = turret.transform.GetChild(0).rotation;
+
+            // q.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, Quaternion.identity.z);
+
+            // turret.transform.rotation = q;
+
+
+
+
+
+            //rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, 0);
+
             // Quaternion worldRotation = turret.transform.parent.rotation * turret.transform.localRotation;
             // turret.transform.eulerAngles = new Vector3(worldRotation.x, rotation.y, worldRotation.z);
             /* Vector3 relativePosC = lookAtTarget.position - turret.transform.GetChild(0).position;
@@ -143,20 +178,20 @@ public class ArcadeCarControls : MonoBehaviour
              Vector3 rot = Quaternion.Lerp(turret.transform.rotation, lookRot, Time.deltaTime * 1).eulerAngles;
              turret.transform.rotation = Quaternion.Euler(turret.transform.rotation.x, rot.y, turret.transform.rotation.z);
              turret.transform.GetChild(0).rotation = Quaternion.Euler(rot.x, rot.y, 0f);*/
-           // var lookPos = lookAtTarget.position - transform.position;
+            // var lookPos = lookAtTarget.position - transform.position;
             //lookPos.y = 0;
-           // var rotation = Quaternion.LookRotation(lookPos);
-           // turret.transform.localRotation = Quaternion.Slerp(turret.transform.rotation, rotation, Time.deltaTime );
+            // var rotation = Quaternion.LookRotation(lookPos);
+            // turret.transform.localRotation = Quaternion.Slerp(turret.transform.rotation, rotation, Time.deltaTime );
             // Debug.Log(turret.transform.eulerAngles.z + " is turret " + transform.eulerAngles.z + " is main");
 
         }
-        
+
         // Main Thrust
 
         thrust = 0.0f;
         float acceleration = Input.GetAxis("Vertical");
 
-        
+
         if (acceleration > deadZone)
             thrust = acceleration * forwardAcceleration;
         else if (acceleration < -deadZone)
@@ -179,7 +214,7 @@ public class ArcadeCarControls : MonoBehaviour
     {
         float damageConvert = damage / 20;
         Rigidbody bull = Instantiate(bullet, turret.transform.GetChild(0).GetChild(0).position, turret.transform.GetChild(0).GetChild(0).rotation) as Rigidbody;
-        bull.transform.localScale = new Vector3(damageConvert,damageConvert,damageConvert);
+        bull.transform.localScale = new Vector3(damageConvert, damageConvert, damageConvert);
         bull.SendMessage("ApplyDamage", damage);
         // Vector3 localForward = bull.transform.worldToLocalMatrix.MultiplyVector(bull.transform.forward);
         bull.AddForce(bull.transform.forward * 5000);
@@ -199,7 +234,7 @@ public class ArcadeCarControls : MonoBehaviour
             {
                 body.AddForceAtPosition(Vector3.up * hoverForce * (1.0f - (hit.distance / hoverHeight)), hoverPoint.transform.position);
                 grounded = true;
-                
+
             }
             else
             {
@@ -258,13 +293,13 @@ public class ArcadeCarControls : MonoBehaviour
 
 
         dir += (body.velocity.sqrMagnitude / 5f) * flip;
-        
+
 
         if (turnValue > 0 && body.velocity.sqrMagnitude > 1)
         {
             body.AddRelativeTorque(Vector3.up * turnValue * turnStrength);
 
-            
+
         }
         else if (turnValue < 0 && body.velocity.sqrMagnitude > 1)
         {
