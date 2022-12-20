@@ -11,7 +11,7 @@ public class CardSelection : MonoBehaviour
     private bool temp = false;
     public GameObject img;
     public CardDatabase database;
-    private int[] availCards = { 0, 1, 2 };
+    private int[] availCards = { 0, 1, 2, 3 };
 
     public CardSlot card1;
     public CardSlot card2;

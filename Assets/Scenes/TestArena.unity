@@ -12572,7 +12572,7 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: acbe680a76b111448adee13451623169, type: 2}
   title: {fileID: 572310034}
   desc: {fileID: 487091076}
-  inv: {fileID: 919132147490925902}
+  inv: {fileID: 919132149037281325}
   parent: {fileID: 1713620617}
 --- !u!114 &1263737100
 MonoBehaviour:
@@ -12637,7 +12637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1269717482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13432,7 +13432,7 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: acbe680a76b111448adee13451623169, type: 2}
   title: {fileID: 1324165426}
   desc: {fileID: 205609755}
-  inv: {fileID: 919132147490925902}
+  inv: {fileID: 919132149037281325}
   parent: {fileID: 1713620617}
 --- !u!114 &1675369592
 MonoBehaviour:
@@ -13646,7 +13646,7 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: acbe680a76b111448adee13451623169, type: 2}
   title: {fileID: 528908026}
   desc: {fileID: 62266820}
-  inv: {fileID: 919132147490925902}
+  inv: {fileID: 919132149037281325}
   parent: {fileID: 1713620617}
 --- !u!114 &1705915657
 MonoBehaviour:
@@ -14012,6 +14012,7 @@ MonoBehaviour:
   engine: {fileID: 2039158385}
   damage: 20
   turrChaser: {fileID: 117182740}
+  inv: {fileID: 0}
   sensitivity: 0.3
   turrectControlType: 0
   bullet: {fileID: -4733209310960396741, guid: b30f00785069a6a4d868b89e808ecd29, type: 3}
@@ -15214,6 +15215,7 @@ GameObject:
   - component: {fileID: 1872346219}
   - component: {fileID: 1872346218}
   - component: {fileID: 1872346217}
+  - component: {fileID: 919132149037281325}
   m_Layer: 6
   m_Name: tankcar (1)
   m_TagString: Player
@@ -15221,6 +15223,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132149037281325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149037281324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e0d1480d819044487e51ea70d0f444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireRate:
+    BaseValue: 5
+  Damage:
+    BaseValue: 5
+  DriveSpeed:
+    BaseValue: 5
+  JumpFactor:
+    BaseValue: 5
+  cards: []
+  inventory: {fileID: 11400000, guid: e82c29f01b4dd7540941cc89d3f1f7e9, type: 2}
 --- !u!23 &1129496809175301028
 MeshRenderer:
   m_ObjectHideFlags: 0

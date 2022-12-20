@@ -19,7 +19,7 @@ MonoBehaviour:
   CardType: 0
   DamageType: default
   JumpFactor: 0
-  DriveSpeed: 10
+  DriveSpeed: 1000
   FireRate: 0
   Damage: 0
   FireRatePercent: 0

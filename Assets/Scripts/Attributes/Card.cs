@@ -46,7 +46,10 @@ public class Card : ScriptableObject
         if (FireRatePercent != 0)
             c.FireRate.AddModifier(new StatModifier(FireRatePercent, StatModType.PercentMult, this));
         if (DamagePercent != 0)
-            c.Damage.AddModifier(new StatModifier(Damage, StatModType.PercentMult, this));
+        {
+            c.Damage.AddModifier(new StatModifier(DamagePercent, StatModType.PercentMult, this));
+            // Debug.Log()
+        }
         //if (BulletSize != 0)
         //   c.FireRate.AddModifier(new StatModifier(FireRatePercent, StatModType.PercentMult, this));
         Debug.Log("equiped");

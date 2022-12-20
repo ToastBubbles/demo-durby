@@ -22,6 +22,6 @@ MonoBehaviour:
   DriveSpeed: 0
   FireRate: 0
   Damage: 0
-  FireRatePercent: 100
+  FireRatePercent: 2
   DamagePercent: 0
   BulletSize: 0

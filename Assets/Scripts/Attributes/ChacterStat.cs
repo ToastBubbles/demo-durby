@@ -101,6 +101,7 @@ public class ChacterStat
             else if (mod.Type == StatModType.PercentAdd)
             {
                 sumPercentAdd += mod.Value;
+                //Console.WriteLine(sumPercentAdd);
                 if (i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
                 {
                     finalValue *= 1 + sumPercentAdd;
@@ -109,7 +110,9 @@ public class ChacterStat
             }
             else if (mod.Type == StatModType.PercentMult)
             {
-                finalValue *= 1 + mod.Value;
+                // Console.WriteLine(mod);
+
+                finalValue *= mod.Value;
             }
         }
 
