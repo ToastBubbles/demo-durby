@@ -5,7 +5,9 @@ using UnityEngine;
 public class CardInventory : MonoBehaviour
 {
     public ChacterStat FireRate;
+    public ChacterStat BulletSpeed;
     public ChacterStat Damage;
+
     public ChacterStat DriveSpeed;
     public ChacterStat JumpFactor;
     private List<Card> cardcheck;

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4fb66133d7fffc4fbb3961bc278ea1f, type: 3}
-  m_Name: DoubleDamage
+  m_Name: BulletSpeed
   m_EditorClassIdentifier: 
-  CardName: Double Damage
-  CardID: 3
-  Icon: {fileID: 21300000, guid: 435aa731ee1b11d40aa8777401c54d29, type: 3}
-  Description: Double Damage
+  CardName: Bullet Speed++
+  CardID: 4
+  Icon: {fileID: 21300000, guid: ed6ed4b6bdc95d445b0fc5b1f46d388a, type: 3}
+  Description: Increase Bullet Speed
   CardType: 0
   DamageType: default
   JumpFactor: 0
@@ -23,6 +23,6 @@ MonoBehaviour:
   FireRate: 0
   Damage: 0
   FireRatePercent: 0
-  DamagePercent: 2
+  DamagePercent: 0
   BulletSize: 0
-  BulletSpeed: 0
+  BulletSpeed: 20

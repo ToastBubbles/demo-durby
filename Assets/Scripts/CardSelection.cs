@@ -11,16 +11,22 @@ public class CardSelection : MonoBehaviour
     private bool temp = false;
     public GameObject img;
     public CardDatabase database;
-    private int[] availCards = { 0, 1, 2, 3 };
+    private List<int> availCards = new List<int>();// = { 0, 1, 2, 3, 4 };
 
     public CardSlot card1;
     public CardSlot card2;
     public CardSlot card3;
 
+    private bool selectionMoveCooldown = true;
+
 
     void Start()
     {
-        GenerateSelection();
+        for (int i = 0; i < database.Cards.Length; i++)
+        {
+            availCards.Add(i);
+        }
+        //GenerateSelection();
     }
 
 
@@ -43,18 +49,73 @@ public class CardSelection : MonoBehaviour
         }
 
 
+        if (Input.GetAxis("Horizontal") > 0 && selectionMoveCooldown)
+        {
+            StartCoroutine("MoveCooldown");
+            if (card1.isActive)
+            {
+                card1.ToggleActive();
+                card2.ToggleActive();
+            }
+            else if (card2.isActive)
+            {
+                card2.ToggleActive();
+                card3.ToggleActive();
+            }
+            else if (card3.isActive)
+            {
+                card3.ToggleActive();
+                card1.ToggleActive();
+            }
+            else
+            {
+                card1.isActive = true;
+            }
+            selectionMoveCooldown = false;
+        }
+        else if (Input.GetAxis("Horizontal") < 0 && selectionMoveCooldown)
+        {
+            StartCoroutine("MoveCooldown");
+            if (card1.isActive)
+            {
+                card1.ToggleActive();
+                card3.ToggleActive();
+            }
+            else if (card2.isActive)
+            {
+                card2.ToggleActive();
+                card1.ToggleActive();
+            }
+            else if (card3.isActive)
+            {
+                card3.ToggleActive();
+                card2.ToggleActive();
+            }
+            else
+            {
+                card1.isActive = true;
+            }
+            selectionMoveCooldown = false;
+        }
 
+    }
+
+    IEnumerator MoveCooldown()
+    {
+        yield return new WaitForSeconds(0.3f);
+        selectionMoveCooldown = true;
     }
 
 
     public void Clicked()
     {
-        card1.UpdateCard(database.Cards[availCards[0]].CardID);
-        card2.UpdateCard(database.Cards[availCards[1]].CardID);
-        card3.UpdateCard(database.Cards[availCards[2]].CardID);
+        // card1.UpdateCard(database.Cards[availCards[0]].CardID);
+        // card2.UpdateCard(database.Cards[availCards[1]].CardID);
+        // card3.UpdateCard(database.Cards[availCards[2]].CardID);
         img.SetActive(false);
+        activeSelction = false;
     }
-    private static void Shuffle(int[] arr, int a, int b)
+    private static void Shuffle(List<int> arr, int a, int b)
     {
         int temp = arr[a];
         arr[a] = arr[b];
@@ -62,9 +123,14 @@ public class CardSelection : MonoBehaviour
     }
     private void GenerateSelection()
     {
+        for (int i = 0; i < database.Cards.Length; i++)
+        {
+            availCards.Add(i);
+        }
 
 
-        int n = availCards.Length;
+
+        int n = availCards.Count;
         // int rand = new Random();
         for (int i = 0; i < n; i++)
         {

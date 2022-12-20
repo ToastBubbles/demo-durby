@@ -12568,6 +12568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14a113a0a92f9148b32b721beb5b7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
   img: {fileID: 1633177725}
   database: {fileID: 11400000, guid: acbe680a76b111448adee13451623169, type: 2}
   title: {fileID: 572310034}
@@ -13428,6 +13429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14a113a0a92f9148b32b721beb5b7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   img: {fileID: 1737011377}
   database: {fileID: 11400000, guid: acbe680a76b111448adee13451623169, type: 2}
   title: {fileID: 1324165426}
@@ -13642,6 +13644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14a113a0a92f9148b32b721beb5b7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   img: {fileID: 1891002136}
   database: {fileID: 11400000, guid: acbe680a76b111448adee13451623169, type: 2}
   title: {fileID: 528908026}
@@ -15195,6 +15198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireRate:
     BaseValue: 1
+  BulletSpeed:
+    BaseValue: 0
   Damage:
     BaseValue: 10
   DriveSpeed:
@@ -15236,6 +15241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireRate:
+    BaseValue: 5
+  BulletSpeed:
     BaseValue: 5
   Damage:
     BaseValue: 5

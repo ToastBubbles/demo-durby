@@ -6,6 +6,7 @@ using TMPro;
 
 public class CardSlot : MonoBehaviour
 {
+    public bool isActive;
     private int id;
     public Image img;
     public CardDatabase database;
@@ -14,12 +15,34 @@ public class CardSlot : MonoBehaviour
     private Button butt;
     public CardInventory inv;
     private Card currentCard;
+
+    private Color dark = new Color(56, 56, 56);
     public CardSelection parent;
 
     void Start()
     {
+        if (isActive)
+        {
+            img.color = Color.white;
+        }
+        else
+        {
+
+            img.color = new Color32(56, 56, 56, 100);
+        }
         butt = GetComponent<Button>();
         butt.onClick.AddListener(Clicked);
+    }
+    public void ToggleActive()
+    {
+        if (isActive)
+        {
+            isActive = false;
+        }
+        else
+        {
+            isActive = true;
+        }
     }
 
     void Clicked()
@@ -34,11 +57,26 @@ public class CardSlot : MonoBehaviour
     void Update()
     {
         // Debug.Log(id);
+        if (isActive)
+        {
+            img.color = Color.white;
+            if (Input.GetButtonDown("A_xbox"))
+            {
+                Debug.Log("FIRE");
+                Clicked();
+            }
+        }
+        else
+        {
+
+            img.color = new Color32(56, 56, 56, 100);
+        }
     }
 
     public void UpdateCard(int cardID)
     {
         id = cardID;
+        Debug.Log(id);
         SetCard(id);
     }
 

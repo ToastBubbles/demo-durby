@@ -31,6 +31,7 @@ public class Card : ScriptableObject
     public float FireRatePercent;
     public float DamagePercent;
     public float BulletSize;
+    public float BulletSpeed;
 
     public void Equip(CardInventory c)
     {
@@ -46,10 +47,11 @@ public class Card : ScriptableObject
         if (FireRatePercent != 0)
             c.FireRate.AddModifier(new StatModifier(FireRatePercent, StatModType.PercentMult, this));
         if (DamagePercent != 0)
-        {
             c.Damage.AddModifier(new StatModifier(DamagePercent, StatModType.PercentMult, this));
-            // Debug.Log()
-        }
+        if (BulletSpeed != 0)
+            c.BulletSpeed.AddModifier(new StatModifier(BulletSpeed, StatModType.Flat, this));
+
+
         //if (BulletSize != 0)
         //   c.FireRate.AddModifier(new StatModifier(FireRatePercent, StatModType.PercentMult, this));
         Debug.Log("equiped");
@@ -59,6 +61,7 @@ public class Card : ScriptableObject
     {
         c.DriveSpeed.RemoveAllModifiersFromSource(this);
         c.FireRate.RemoveAllModifiersFromSource(this);
+        c.BulletSpeed.RemoveAllModifiersFromSource(this);
         c.Damage.RemoveAllModifiersFromSource(this);
         c.JumpFactor.RemoveAllModifiersFromSource(this);
     }
