@@ -16,6 +16,9 @@ public class ArcadeCarControls : MonoBehaviour
     public AudioSource engine;
     public float damage = 20;
     public Transform turrChaser;
+    public CardInventory inv;
+
+    //public ChacterStat speed = new ChacterStat(baseValue: 5);
 
     public float sensitivity = 0.3f;
     public int turrectControlType = 0;
@@ -53,6 +56,10 @@ public class ArcadeCarControls : MonoBehaviour
 
     void Start()
     {
+
+        inv = gameObject.GetComponent<CardInventory>();
+
+
         body = GetComponent<Rigidbody>();
         body.centerOfMass = Vector3.down;
 
@@ -61,8 +68,9 @@ public class ArcadeCarControls : MonoBehaviour
     }
     void Update()
     {
-
-
+        //Debug.Log(speed.StatModifiers.Count);
+        Debug.Log(inv.Damage.Value);
+        // Debug.Log(stats.StatModifiers);
         Quaternion turretSnap = Quaternion.Euler(Input.GetAxis("Mouse Y") * 50, turret.transform.GetChild(0).localEulerAngles.y, turret.transform.GetChild(0).localEulerAngles.z);
         //Quaternion turretSnap = Quaternion.Euler(Input.GetAxis("Mouse Y") * 50, turret.transform.GetChild(0).localEulerAngles.y, turret.transform.GetChild(0).localEulerAngles.z);
 
@@ -249,7 +257,7 @@ public class ArcadeCarControls : MonoBehaviour
 
 
         if (acceleration > deadZone)
-            thrust = acceleration * forwardAcceleration;
+            thrust = acceleration * forwardAcceleration + (10 * inv.DriveSpeed.Value);
         else if (acceleration < -deadZone)
             thrust = acceleration * reverseAcceleration;
 
@@ -271,10 +279,10 @@ public class ArcadeCarControls : MonoBehaviour
         float damageConvert = damage / 20;
         Rigidbody bull = Instantiate(bullet, turret.transform.GetChild(0).GetChild(0).position, turret.transform.GetChild(0).GetChild(0).rotation) as Rigidbody;
         bull.transform.localScale = new Vector3(damageConvert, damageConvert, damageConvert);
-        bull.SendMessage("ApplyDamage", damage);
+        bull.SendMessage("ApplyDamage", inv.Damage.Value);
         // Vector3 localForward = bull.transform.worldToLocalMatrix.MultiplyVector(bull.transform.forward);
         bull.AddForce(bull.transform.forward * 5000);
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay * 5 / inv.FireRate.Value);
         canFire = true;
     }
 

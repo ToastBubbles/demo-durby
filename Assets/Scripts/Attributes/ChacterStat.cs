@@ -43,6 +43,7 @@ public class ChacterStat
 
     public virtual void AddModifier(StatModifier mod)
     {
+
         isDirty = true;
         statModifiers.Add(mod);
         statModifiers.Sort(CompareModifierOrder);
@@ -71,9 +72,9 @@ public class ChacterStat
     public virtual bool RemoveAllModifiersFromSource(object source)
     {
         bool didRemove = false;
-        for (int i = statModifiers.Count -1; i >= 0; i--)
+        for (int i = statModifiers.Count - 1; i >= 0; i--)
         {
-            if(statModifiers[i].Source == source)
+            if (statModifiers[i].Source == source)
             {
                 isDirty = true;
                 didRemove = true;
@@ -96,15 +97,17 @@ public class ChacterStat
             if (mod.Type == StatModType.Flat)
             {
                 finalValue += mod.Value;
-            } else if (mod.Type == StatModType.PercentAdd) 
+            }
+            else if (mod.Type == StatModType.PercentAdd)
             {
                 sumPercentAdd += mod.Value;
-                if(i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
+                if (i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
                 {
                     finalValue *= 1 + sumPercentAdd;
                     sumPercentAdd = 0;
                 }
-            } else if (mod.Type == StatModType.PercentMult) 
+            }
+            else if (mod.Type == StatModType.PercentMult)
             {
                 finalValue *= 1 + mod.Value;
             }

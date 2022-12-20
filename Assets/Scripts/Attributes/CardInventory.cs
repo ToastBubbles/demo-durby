@@ -8,6 +8,7 @@ public class CardInventory : MonoBehaviour
     public ChacterStat Damage;
     public ChacterStat DriveSpeed;
     public ChacterStat JumpFactor;
+    private List<Card> cardcheck;
 
     [SerializeField] List<Card> cards;
     [SerializeField] CardDatabase inventory;
@@ -22,7 +23,7 @@ public class CardInventory : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(DriveSpeed.Value + " is Speed");
+        //Debug.Log(DriveSpeed.Value + " is Speed");
     }
     public void Equip(Card card)
     {
@@ -69,6 +70,25 @@ public class CardInventory : MonoBehaviour
     }
 
     private void RefreshStats()
+    {
+        //Debug.Log("REFRESHING");
+        if (cardcheck != cards)
+        {
+            // Debug.Log("List Changed!");
+            cards.ForEach(card =>
+            {
+
+                if (card.CardType == 0)//only applies if card is a stat mod
+                {
+                    //Debug.Log(card.CardName);
+
+                }
+            });
+        }
+        cardcheck = new List<Card>(cards);
+    }
+
+    private void ApplyStat(string type, float val)
     {
 
     }
