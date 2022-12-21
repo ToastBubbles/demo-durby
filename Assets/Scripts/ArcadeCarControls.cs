@@ -6,6 +6,7 @@ public class ArcadeCarControls : MonoBehaviour
 {
     Rigidbody body;
     float deadZone = 0.1f;
+    public float lookSensitivity = 0.3f;
     public float m_groundedDrag = 3f;
     public float maxVelocity = 50;
     public float hoverForce = 1000;
@@ -42,6 +43,7 @@ public class ArcadeCarControls : MonoBehaviour
     private float lookvalX = 0;
     private float turRot;
     float driveSpeed;
+    bool grounded = false;
 
 
 
@@ -204,24 +206,72 @@ public class ArcadeCarControls : MonoBehaviour
             // Debug.Log(turret.transform.GetChild(0).transform.localEulerAngles.x + " " + Input.GetAxis("Mouse Y"));
             ////////////////////////////
 
-            if (Input.GetAxis("Mouse Y") != 0)
+            if (Input.GetButtonDown("A_xbox") && grounded)
             {
-                lookval += Input.GetAxis("Mouse Y") * 0.5f;
+                Debug.Log("Jump");
+                body.AddForce(transform.up * 1000f, ForceMode.Impulse);
+
             }
+            if (Input.GetAxis("Mouse Y") > 0 && lookval > -50)
+            {
+
+                lookval += Input.GetAxis("Mouse Y") * lookSensitivity;
+            }
+            else if (Input.GetAxis("Mouse Y") < 0 && lookval < 15)
+            {
+
+                lookval += Input.GetAxis("Mouse Y") * lookSensitivity;
+            }
+            if (lookval < -50)
+            {
+                lookval = -49.5f;
+            }
+            else if (lookval > 15)
+            {
+                lookval = 14.9f;
+            }
+            Debug.Log(lookval);
             Quaternion eulerRots = Quaternion.Euler(lookval, Quaternion.identity.y, Quaternion.identity.z);
             //hoverPoints[0].transform.localRotation = Quaternion.Slerp(hoverPoints[0].transform.localRotation, eulerRot, Time.deltaTime * 5);
             turret.transform.GetChild(0).localRotation = Quaternion.Slerp(turret.transform.GetChild(0).localRotation, eulerRots, Time.deltaTime * 5);
+            Debug.Log(turret.transform.GetChild(0).localEulerAngles.x);
+            // turret.transform.GetChild(0).localRotation.eulerAngles.x = Mathf.Clamp(turret.transform.GetChild(0).localEulerAngles.x, -10, 30);
 
             //turret.transform.GetChild(0).Rotate(Input.GetAxis("Mouse Y"), 0, 0);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             if (Input.GetAxis("Mouse X") != 0)
             {
-                lookvalX += Input.GetAxis("Mouse X") * 0.5f;
+                lookvalX += Input.GetAxis("Mouse X") * lookSensitivity;
             }
+
+            // Vector3 xAxisrot = new Vector3(Quaternion.identity.x, lookvalX, Quaternion.identity.z);
             Quaternion eulerRotsX = Quaternion.Euler(Quaternion.identity.x, lookvalX, Quaternion.identity.z);
             //hoverPoints[0].transform.localRotation = Quaternion.Slerp(hoverPoints[0].transform.localRotation, eulerRot, Time.deltaTime * 5);
             turret.transform.localRotation = Quaternion.Slerp(turret.transform.localRotation, eulerRotsX, Time.deltaTime * 5);
+
 
 
 
@@ -290,35 +340,51 @@ public class ArcadeCarControls : MonoBehaviour
     {
         //  Hover Force
         RaycastHit hit;
-        bool grounded = false;
+
         for (int i = 0; i < hoverPoints.Length; i++)
         {
             var hoverPoint = hoverPoints[i];
-            if (Physics.Raycast(hoverPoint.transform.position, -hoverPoint.transform.up, out hit, hoverHeight, layerMask))
+            Physics.Raycast(hoverPoint.transform.position, -hoverPoint.transform.up, out hit, hoverHeight, layerMask);
+            if (hoverPoint.transform.position.y - hit.point.y < hoverHeight)
             {
-                body.AddForceAtPosition(Vector3.up * hoverForce * (1.0f - (hit.distance / hoverHeight)), hoverPoint.transform.position);
                 grounded = true;
-
+                body.AddForceAtPosition(Vector3.up * hoverForce * (1.0f - (hit.distance / hoverHeight)), hoverPoint.transform.position);
             }
             else
             {
-                // Self levelling - returns the vehicle to horizontal when not grounded
-                if (transform.position.y > hoverPoint.transform.position.y)
-                {
-                    body.AddForceAtPosition(hoverPoint.transform.up * gravityForce, hoverPoint.transform.position);
-                }
-                else
-                {
-                    body.AddForceAtPosition(hoverPoint.transform.up * -gravityForce, hoverPoint.transform.position);
-                }
+
+                grounded = false;
             }
+            // if (Physics.Raycast(hoverPoint.transform.position, -hoverPoint.transform.up, out hit, hoverHeight, layerMask))
+            // {
+            //     body.AddForceAtPosition(Vector3.up * hoverForce * (1.0f - (hit.distance / hoverHeight)), hoverPoint.transform.position);
+
+            //     grounded = true;
+
+            // }
+            // else
+            // {
+            //     grounded = false;
+            //     // Self levelling - returns the vehicle to horizontal when not grounded
+            //     // if (transform.position.y > hoverPoint.transform.position.y)
+            //     // {
+            //     //     body.AddForceAtPosition(hoverPoint.transform.up * gravityForce, hoverPoint.transform.position);
+            //     // }
+            //     // else
+            //     // {
+            //     //     body.AddForceAtPosition(hoverPoint.transform.up * -gravityForce, hoverPoint.transform.position);
+            //     // }
+            // }
+            // Debug.Log(hoverPoint.transform.position.y - hit.point.y);
             Debug.DrawRay(hoverPoint.transform.position, -hoverPoint.transform.up, Color.red);
 
         }
 
+
         var emissionRate = 0;
         if (grounded)
         {
+
             body.drag = m_groundedDrag;
             emissionRate = 10;
         }
