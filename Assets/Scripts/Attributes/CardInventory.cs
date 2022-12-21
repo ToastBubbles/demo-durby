@@ -10,6 +10,7 @@ public class CardInventory : MonoBehaviour
 
     public ChacterStat DriveSpeed;
     public ChacterStat JumpFactor;
+    public List<string> DamageEffects;
     private List<Card> cardcheck;
 
     [SerializeField] List<Card> cards;

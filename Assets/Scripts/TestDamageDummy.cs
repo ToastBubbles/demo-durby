@@ -7,14 +7,16 @@ public class TestDamageDummy : MonoBehaviour
     public Transform player;
     public GameObject turret;
     private bool canFire = true;
+    
     public Rigidbody bullet;
     public float damage = 20;
     public float delay = 5;
+    List<string> dmgTypes;
 
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -24,7 +26,7 @@ public class TestDamageDummy : MonoBehaviour
 
         Vector3 relativePos = player.position - turret.transform.position;
         float dist = Vector3.Distance(player.position, turret.transform.position);
-        relativePos = new Vector3(relativePos.x, relativePos.y + (dist /20), relativePos.z);
+        relativePos = new Vector3(relativePos.x, relativePos.y + (dist / 20), relativePos.z);
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
         //rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, 0);
         turret.transform.rotation = rotation;
@@ -43,7 +45,8 @@ public class TestDamageDummy : MonoBehaviour
         float damageConvert = damage / 20;
         Rigidbody bull = Instantiate(bullet, turret.transform.GetChild(0).position, turret.transform.GetChild(0).rotation) as Rigidbody;
         bull.transform.localScale = new Vector3(damageConvert, damageConvert, damageConvert);
-        bull.SendMessage("ApplyDamage", damage);
+        //bull.SendMessage("ApplyDamage", (damage, dmgTypes)); /// will need later for ai shooting
+        bull.GetComponent<Bullet>().ApplyDamage(damage, dmgTypes);
         // Vector3 localForward = bull.transform.worldToLocalMatrix.MultiplyVector(bull.transform.forward);
         bull.AddForce(bull.transform.forward * 5000);
         yield return new WaitForSeconds(delay);

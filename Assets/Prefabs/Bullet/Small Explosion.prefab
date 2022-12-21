@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2549434775854474029}
   - component: {fileID: 3384822418539238241}
   - component: {fileID: -400699382070559782}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Small Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exp: {fileID: 6668343247269191164}
   hitMark: {fileID: 8243280526998039803, guid: ca09b7ab34409c34a9bb4d503c0bdc34, type: 3}
-  audiosource: {fileID: 0}
 --- !u!82 &2549434775854474029
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5080,7 +5079,7 @@ GameObject:
   - component: {fileID: 1685406381456084481}
   - component: {fileID: 5228837490114586619}
   - component: {fileID: 7768020114168015773}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

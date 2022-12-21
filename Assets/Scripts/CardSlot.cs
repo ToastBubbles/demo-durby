@@ -47,8 +47,8 @@ public class CardSlot : MonoBehaviour
 
     void Clicked()
     {
-        Debug.Log("You have clicked the button!");
-        Debug.Log(currentCard);
+        //Debug.Log("You have clicked the button!");
+        //Debug.Log(currentCard);
         inv.Equip(currentCard);
         parent.Clicked();
     }
@@ -62,7 +62,7 @@ public class CardSlot : MonoBehaviour
             img.color = Color.white;
             if (Input.GetButtonDown("A_xbox"))
             {
-                Debug.Log("FIRE");
+                //Debug.Log("FIRE");
                 Clicked();
             }
         }
@@ -76,7 +76,7 @@ public class CardSlot : MonoBehaviour
     public void UpdateCard(int cardID)
     {
         id = cardID;
-        Debug.Log(id);
+        //Debug.Log(id);
         SetCard(id);
     }
 

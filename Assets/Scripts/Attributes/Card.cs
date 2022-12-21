@@ -8,6 +8,7 @@ public enum CardType
     Stat,
     Ability,
     AbilityStat,
+    Effect,
 }
 [CreateAssetMenu]
 public class Card : ScriptableObject
@@ -50,7 +51,10 @@ public class Card : ScriptableObject
             c.Damage.AddModifier(new StatModifier(DamagePercent, StatModType.PercentMult, this));
         if (BulletSpeed != 0)
             c.BulletSpeed.AddModifier(new StatModifier(BulletSpeed, StatModType.Flat, this));
-
+        if (DamageType != "default")
+        {
+            c.DamageEffects.Add(DamageType);
+        }
 
         //if (BulletSize != 0)
         //   c.FireRate.AddModifier(new StatModifier(FireRatePercent, StatModType.PercentMult, this));

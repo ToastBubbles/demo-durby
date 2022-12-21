@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     bool hasExplode = false;
 
     float dmg = 20;
+    List<string> dmgTypes;
 
 
     void Start()
@@ -32,17 +33,23 @@ public class Bullet : MonoBehaviour
 
 
 
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
     }
-    public void ApplyDamage(float damage)
+    public void ApplyDamage(float damage, List<string> damageTypes)
     {
         dmg = damage;
+        dmgTypes = damageTypes;
+        // for(var i = 0; i< damageTypes.Count; i++){
+        //     if (damageTypes[i] =="fire"){
+
+        //     }
+        // }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,8 +57,9 @@ public class Bullet : MonoBehaviour
         if (!hasExplode)
         {
             GameObject clone = Instantiate(smallExplosion, transform.position, transform.rotation);
-            clone.transform.localScale = new Vector3(dmg/20, dmg/20, dmg/20);
-            clone.SendMessage("ApplyDamage", dmg);
+            clone.transform.localScale = new Vector3(dmg / 20, dmg / 20, dmg / 20);
+            //clone.SendMessage("ApplyDamage", (dmg, dmgTypes));
+            clone.GetComponent<smallExplosion>().ApplyDamage(dmg, dmgTypes);
 
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             hasExplode = true;

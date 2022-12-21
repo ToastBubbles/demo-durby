@@ -71,7 +71,7 @@ public class ArcadeCarControls : MonoBehaviour
     void Update()
     {
         //Debug.Log(speed.StatModifiers.Count);
-        Debug.Log(inv.Damage.Value);
+        //Debug.Log(inv.Damage.Value);
         // Debug.Log(stats.StatModifiers);
         Quaternion turretSnap = Quaternion.Euler(Input.GetAxis("Mouse Y") * 50, turret.transform.GetChild(0).localEulerAngles.y, turret.transform.GetChild(0).localEulerAngles.z);
         //Quaternion turretSnap = Quaternion.Euler(Input.GetAxis("Mouse Y") * 50, turret.transform.GetChild(0).localEulerAngles.y, turret.transform.GetChild(0).localEulerAngles.z);
@@ -230,11 +230,11 @@ public class ArcadeCarControls : MonoBehaviour
             {
                 lookval = 14.9f;
             }
-            Debug.Log(lookval);
+            //Debug.Log(lookval);
             Quaternion eulerRots = Quaternion.Euler(lookval, Quaternion.identity.y, Quaternion.identity.z);
             //hoverPoints[0].transform.localRotation = Quaternion.Slerp(hoverPoints[0].transform.localRotation, eulerRot, Time.deltaTime * 5);
             turret.transform.GetChild(0).localRotation = Quaternion.Slerp(turret.transform.GetChild(0).localRotation, eulerRots, Time.deltaTime * 5);
-            Debug.Log(turret.transform.GetChild(0).localEulerAngles.x);
+            // /Debug.Log(turret.transform.GetChild(0).localEulerAngles.x);
             // turret.transform.GetChild(0).localRotation.eulerAngles.x = Mathf.Clamp(turret.transform.GetChild(0).localEulerAngles.x, -10, 30);
 
             //turret.transform.GetChild(0).Rotate(Input.GetAxis("Mouse Y"), 0, 0);
@@ -326,10 +326,15 @@ public class ArcadeCarControls : MonoBehaviour
     }
     IEnumerator FireCannon()
     {
+        // object[] tempStorage = new object[2];
+        // tempStorage[0] = inv.Damage.Value;
+        // tempStorage[1] = inv.DamageEffects;
         float damageConvert = inv.Damage.Value / 5;
         Rigidbody bull = Instantiate(bullet, turret.transform.GetChild(0).GetChild(0).position, turret.transform.GetChild(0).GetChild(0).rotation) as Rigidbody;
         bull.transform.localScale = new Vector3(damageConvert, damageConvert, damageConvert);
-        bull.SendMessage("ApplyDamage", inv.Damage.Value);
+        ////bull.SendMessage("ApplyDamage", tempStorage);
+        bull.GetComponent<Bullet>().ApplyDamage(inv.Damage.Value, inv.DamageEffects);
+        //bull.SendMessage("DamageType", inv.DamageEffects);
         // Vector3 localForward = bull.transform.worldToLocalMatrix.MultiplyVector(bull.transform.forward);
         bull.AddForce(bull.transform.forward * 1000 * inv.BulletSpeed.Value);
         yield return new WaitForSeconds(delay * 5 / inv.FireRate.Value);
