@@ -94,7 +94,7 @@ public class smallExplosion : MonoBehaviour
 
                     float explosionDamage = dmg - (Vector3.Distance(center, closestPoint)) / (size / 2) * dmg;
                     explosionDamage = RoundToNearestHalf(explosionDamage);
-                    Debug.Log(size + " is size " + Vector3.Distance(center, closestPoint) + " is distance ");
+                    //Debug.Log(size + " is size " + Vector3.Distance(center, closestPoint) + " is distance ");
                     //Debug.Log(Vector3.Distance(center, closestPoint));
                     hitCollider.GetComponent<TankHealth>().updateOffset(offset);
                     hitCollider.GetComponent<TankHealth>().ApplyDamage(explosionDamage, dmgTypes, "");

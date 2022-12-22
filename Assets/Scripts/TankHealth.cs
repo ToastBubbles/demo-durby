@@ -95,7 +95,7 @@ public class TankHealth : MonoBehaviour
         {
             makeHitmarker(damage);
         }
-        ///// print(health);
+        print(health);
     }
     public void updateOffset(Vector3 pos)
     {
