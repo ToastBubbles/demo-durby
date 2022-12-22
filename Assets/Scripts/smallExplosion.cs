@@ -60,7 +60,7 @@ public class smallExplosion : MonoBehaviour
         //_exp.transform.localScale = Vector3.Lerp(_exp.transform.localScale, _exp.transform.localScale * 3f, Time.deltaTime * 20);
     }
 
-    Vector3 cp;
+    // Vector3 cp;
     void ExplosionDamage(Vector3 center, float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius / 2);
@@ -90,9 +90,10 @@ public class smallExplosion : MonoBehaviour
                     //RaycastHit hit;
                     //Physics.Raycast(center, , out hit, hoverHeight, layerMask);
                     Vector3 closestPoint = hitCollider.ClosestPoint(center);
-                    cp = closestPoint;
+                    // cp = closestPoint;
 
-                    float explosionDamage = (size / 2 - (Vector3.Distance(center, closestPoint)));
+                    float explosionDamage = dmg - (Vector3.Distance(center, closestPoint)) / (size / 2) * dmg;
+                    explosionDamage = RoundToNearestHalf(explosionDamage);
                     Debug.Log(size + " is size " + Vector3.Distance(center, closestPoint) + " is distance ");
                     //Debug.Log(Vector3.Distance(center, closestPoint));
                     hitCollider.GetComponent<TankHealth>().updateOffset(offset);
@@ -102,15 +103,19 @@ public class smallExplosion : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmos()
+    private static float RoundToNearestHalf(float a)
     {
-
-        Gizmos.color = Color.red;
-        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        // Gizmos.DrawWireSphere(transform.position, size / 2);
-        Gizmos.DrawWireSphere(cp, 0.5f);
+        return a = Mathf.Round(a * 2f) * 0.5f;
     }
+
+    // private void OnDrawGizmos()
+    // {
+
+    //     Gizmos.color = Color.red;
+    //     //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+    //     // Gizmos.DrawWireSphere(transform.position, size / 2);
+    //     Gizmos.DrawWireSphere(cp, 0.5f);
+    // }
 
     IEnumerator DestroySelf()
     {
