@@ -45,7 +45,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1704869690841621108}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.25
   m_Height: 0.6
   m_Direction: 2
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallExplosion: {fileID: 2392180535877991720, guid: 81dbd151a8ad93745a81b2e3e3d793c4, type: 3}
+  lr: {fileID: 4349644714438454565, guid: 2f4253a27eaa85f48a5e471d78ab7949, type: 3}
   lm:
     serializedVersion: 2
     m_Bits: 0
@@ -568,6 +569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallExplosion: {fileID: 2392180535877991720, guid: 81dbd151a8ad93745a81b2e3e3d793c4, type: 3}
+  lr: {fileID: 0}
   lm:
     serializedVersion: 2
     m_Bits: 0
