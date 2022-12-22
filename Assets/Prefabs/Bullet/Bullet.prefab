@@ -204,6 +204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallExplosion: {fileID: 2392180535877991720, guid: 81dbd151a8ad93745a81b2e3e3d793c4, type: 3}
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &-4733209310960396741
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -565,6 +568,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallExplosion: {fileID: 2392180535877991720, guid: 81dbd151a8ad93745a81b2e3e3d793c4, type: 3}
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &4252978520588579714
 GameObject:
   m_ObjectHideFlags: 0

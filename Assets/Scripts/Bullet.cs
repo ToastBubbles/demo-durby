@@ -8,11 +8,15 @@ public class Bullet : MonoBehaviour
     bool hasExplode = false;
 
     float dmg = 20;
+
+    Vector3 iniPos;
     List<string> dmgTypes;
+    public LayerMask lm;
 
 
     void Start()
     {
+        iniPos = transform.position;
         StartCoroutine("DestroySelf");
         AudioSource ass = GetComponent<AudioSource>();
         if (dmg > 80)
@@ -39,7 +43,11 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Debug.Log(Vector3.Distance(iniPos, transform.position));
+        if (Vector3.Distance(iniPos, transform.position) > 6)
+        {
+            Debug.Log("enable");
+        }
     }
     public void ApplyDamage(float damage, List<string> damageTypes)
     {
@@ -54,16 +62,44 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!hasExplode)
+        if (other.tag == "Player" && Vector3.Distance(iniPos, transform.position) < 10)
         {
-            GameObject clone = Instantiate(smallExplosion, transform.position, transform.rotation);
-            clone.transform.localScale = new Vector3(dmg / 20, dmg / 20, dmg / 20);
-            //clone.SendMessage("ApplyDamage", (dmg, dmgTypes));
-            clone.GetComponent<smallExplosion>().ApplyDamage(dmg, dmgTypes);
+            Debug.Log("stop hitting urself");
 
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            hasExplode = true;
-            GetComponent<Rigidbody>().isKinematic = true;
+        }
+        else
+        {
+            if (!hasExplode)
+            {
+
+
+                if (other.tag == "Player" || other.tag == "Dummy")
+                {
+
+                    //Debug.Log(other.tag);
+                    GameObject clone = Instantiate(smallExplosion, transform.position, transform.rotation);
+                    //clone.transform.localScale = new Vector3(dmg / 20, dmg / 20, dmg / 20);
+                    //clone.SendMessage("ApplyDamage", (dmg, dmgTypes));
+                    clone.GetComponent<smallExplosion>().ApplyDamage(dmg, dmgTypes, true);
+
+                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                    hasExplode = true;
+                    GetComponent<Rigidbody>().isKinematic = true;
+                }
+                else
+                {
+                    GameObject clone = Instantiate(smallExplosion, transform.position, transform.rotation);
+                    //clone.transform.localScale = new Vector3(dmg / 20, dmg / 20, dmg / 20);
+                    //clone.SendMessage("ApplyDamage", (dmg, dmgTypes));
+                    clone.GetComponent<smallExplosion>().ApplyDamage(dmg, dmgTypes, false);
+
+                    gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                    hasExplode = true;
+                    GetComponent<Rigidbody>().isKinematic = true;
+                }
+
+
+            }
         }
         //Destroy(gameObject);
     }

@@ -6,12 +6,12 @@ public class TestDamageDummy : MonoBehaviour
 {
     public Transform player;
     public GameObject turret;
-    private bool canFire = true;
-    
+    private bool canFire = false;
+
     public Rigidbody bullet;
     public float damage = 20;
     public float delay = 5;
-    List<string> dmgTypes;
+    List<string> dmgTypes = new List<string>();
 
 
     void Start()
@@ -22,7 +22,7 @@ public class TestDamageDummy : MonoBehaviour
     void Update()
     {
         Vector3 spin = new Vector3(0, 0.1f, 0);
-        transform.Rotate(spin, Space.World);
+        ///// transform.Rotate(spin, Space.World);
 
         Vector3 relativePos = player.position - turret.transform.position;
         float dist = Vector3.Distance(player.position, turret.transform.position);

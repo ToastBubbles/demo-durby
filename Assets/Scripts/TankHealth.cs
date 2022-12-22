@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestHealth : MonoBehaviour
+public class TankHealth : MonoBehaviour
 {
     public float health = 100f;
     private List<string> currentBuffs = new List<string>();
@@ -10,10 +10,11 @@ public class TestHealth : MonoBehaviour
     public GameObject hitMark;
     List<string> myDefaultList = new List<string>();
     public GameObject particleFire;
+    Vector3 offset = new Vector3();//(transform.position.x, transform.position.y + 2, transform.position.z);
 
     void Start()
     {
-        print(health);
+        //print(health);
 
     }
 
@@ -94,7 +95,11 @@ public class TestHealth : MonoBehaviour
         {
             makeHitmarker(damage);
         }
-        print(health);
+        ///// print(health);
+    }
+    public void updateOffset(Vector3 pos)
+    {
+        offset = pos;
     }
 
     private void makeHitmarker(float dmg)
@@ -104,7 +109,7 @@ public class TestHealth : MonoBehaviour
     }
     private void makeHitmarker(float dmg, Color32 color)
     {
-        Vector3 offset = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+
         GameObject clone = Instantiate(hitMark, offset, transform.rotation);
         //clone.SendMessage("SetDamage", dmg);
         clone.GetComponent<DamageDisplay>().SetDamage(dmg, color);

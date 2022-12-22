@@ -7389,7 +7389,6 @@ GameObject:
   m_Component:
   - component: {fileID: 943090768}
   - component: {fileID: 943090769}
-  - component: {fileID: 943090770}
   m_Layer: 0
   m_Name: dummytank
   m_TagString: Dummy
@@ -7431,21 +7430,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.78, y: 1, z: 2.58}
   m_Center: {x: 0, y: 0.71, z: 0}
---- !u!114 &943090770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943090767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56080efe457921a47a62d423a10b6ec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  hitMark: {fileID: 8243280526998039803, guid: ca09b7ab34409c34a9bb4d503c0bdc34, type: 3}
-  particleFire: {fileID: 1394221042}
 --- !u!1 &1093365752
 GameObject:
   m_ObjectHideFlags: 0

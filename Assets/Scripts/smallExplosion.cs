@@ -12,15 +12,16 @@ public class smallExplosion : MonoBehaviour
     private AudioManager audioMan;
 
     // public float damage = 20;
-    float dmg = 20;
+    float dmg = 1;
+    float size = 1;
+    bool didHitDirect = false;
+    GameObject itemHit;
+    float lerpTime = 0;
     List<string> dmgTypes = new List<string>();
     void Start()
     {
-        audiosource = GetComponent<AudioSource>();
-        GameObject gmAM = GameObject.FindGameObjectWithTag("Audio Manager");
-        audioMan = gmAM.GetComponent<AudioManager>();
-        StartCoroutine("DestroySelf");
-        ExplosionDamage(transform.position, (dmg / 30));
+
+
 
         /* if (dmg > 80)
          {
@@ -37,47 +38,86 @@ public class smallExplosion : MonoBehaviour
 
     }
 
-    public void ApplyDamage(float damage, List<string> damageTypes)
+    public void ApplyDamage(float damage, List<string> damageTypes, bool directHit)
     {
         dmg = damage;
+        size = dmg / 1;
         dmgTypes = damageTypes;
+        didHitDirect = directHit;
+        audiosource = GetComponent<AudioSource>();
+        GameObject gmAM = GameObject.FindGameObjectWithTag("Audio Manager");
+        audioMan = gmAM.GetComponent<AudioManager>();
+        StartCoroutine("DestroySelf");
+        ExplosionDamage(transform.position, size);
     }
+    Vector3 startSize = Vector3.zero;
+
     void Update()
     {
-        _exp.transform.localScale = Vector3.Lerp(_exp.transform.localScale, _exp.transform.localScale * 1.2f, Time.deltaTime * 20);
+        Vector3 endSize = new Vector3(size, size, size);
+        _exp.transform.localScale = Vector3.Lerp(startSize, endSize, lerpTime);
+        lerpTime += Time.deltaTime * 20;
+        //_exp.transform.localScale = Vector3.Lerp(_exp.transform.localScale, _exp.transform.localScale * 3f, Time.deltaTime * 20);
     }
+
+    Vector3 cp;
     void ExplosionDamage(Vector3 center, float radius)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius / 2);
 
         foreach (var hitCollider in hitColliders)
         {
             //hitCollider.SendMessage("AddDamage");
             //Debug.Log(hitCollider.name);
-            if (hitCollider.tag == "Dummy")
+            if (hitCollider.tag == "Dummy" || hitCollider.tag == "Player")
             {
                 audioMan.PlayHitAudio();
                 //hitCollider.SendMessage("ApplyDamage", (dmg, dmgTypes));
-                hitCollider.GetComponent<TestHealth>().ApplyDamage(dmg, dmgTypes, "");
+
                 Vector3 offset = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+                // hitCollider.GetComponent<TankHealth>().updateOffset(offset);
+                // hitCollider.GetComponent<TankHealth>().ApplyDamage(dmg, dmgTypes, "");
                 // GameObject clone = Instantiate(hitMark, offset, transform.rotation);
                 // clone.SendMessage("SetDamage", dmg);
+                if (didHitDirect)
+                {
+                    Debug.Log("direct Hit");
+                    hitCollider.GetComponent<TankHealth>().updateOffset(offset);
+                    hitCollider.GetComponent<TankHealth>().ApplyDamage(dmg, dmgTypes, "");
+                }
+                else
+                {
+                    //RaycastHit hit;
+                    //Physics.Raycast(center, , out hit, hoverHeight, layerMask);
+                    Vector3 closestPoint = hitCollider.ClosestPoint(center);
+                    cp = closestPoint;
 
+                    float explosionDamage = (size / 2 - (Vector3.Distance(center, closestPoint)));
+                    Debug.Log(size + " is size " + Vector3.Distance(center, closestPoint) + " is distance ");
+                    //Debug.Log(Vector3.Distance(center, closestPoint));
+                    hitCollider.GetComponent<TankHealth>().updateOffset(offset);
+                    hitCollider.GetComponent<TankHealth>().ApplyDamage(explosionDamage, dmgTypes, "");
+                    ;
+                }
             }
         }
     }
+
     private void OnDrawGizmos()
     {
+
         Gizmos.color = Color.red;
         //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        Gizmos.DrawWireSphere(transform.position, (dmg / 30));
+        // Gizmos.DrawWireSphere(transform.position, size / 2);
+        Gizmos.DrawWireSphere(cp, 0.5f);
     }
 
     IEnumerator DestroySelf()
     {
+
         yield return new WaitForSeconds(0.25f);
         _exp.SetActive(false);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }
