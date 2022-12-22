@@ -6,7 +6,11 @@ public class ArcadeCarControls : MonoBehaviour
 {
     Rigidbody body;
     float deadZone = 0.1f;
+    public GameObject cam;
+    public Transform camPos1;
+    public Transform camPos2;
     public float lookSensitivity = 0.3f;
+    public float userFOV = 60f;
     public float m_groundedDrag = 3f;
     public float maxVelocity = 50;
     public float hoverForce = 1000;
@@ -18,6 +22,7 @@ public class ArcadeCarControls : MonoBehaviour
     public float damage = 20;
     public Transform turrChaser;
     public CardInventory inv;
+    bool zoomToggle = false;
 
     //public ChacterStat speed = new ChacterStat(baseValue: 5);
 
@@ -323,6 +328,30 @@ public class ArcadeCarControls : MonoBehaviour
             StartCoroutine("FireCannon");
             canFire = false;
         }
+        if (Input.GetButtonDown("RS_Xbox"))
+        {
+            Debug.Log("RS");
+            zoomToggle = !zoomToggle;
+            if (zoomToggle)
+            {
+                //zoomIn();
+                cam.transform.position = camPos2.position;
+                cam.GetComponent<Camera>().fieldOfView = 20f;
+                cam.transform.GetChild(0).GetComponent<Camera>().fieldOfView = 20f;
+            }
+            else
+            {
+                cam.transform.position = camPos1.position;
+                cam.GetComponent<Camera>().fieldOfView = userFOV;
+                cam.transform.GetChild(0).GetComponent<Camera>().fieldOfView = userFOV;
+            }
+        }
+
+    }
+
+    private void zoomIn()
+    {
+
     }
     IEnumerator FireCannon()
     {
