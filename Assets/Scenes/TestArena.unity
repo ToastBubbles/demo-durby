@@ -25069,7 +25069,7 @@ MonoBehaviour:
   BulletSpeed:
     BaseValue: 5
   Damage:
-    BaseValue: 20
+    BaseValue: 5
   DriveSpeed:
     BaseValue: 5
   JumpFactor:
