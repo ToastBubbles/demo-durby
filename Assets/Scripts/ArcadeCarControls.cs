@@ -246,28 +246,6 @@ public class ArcadeCarControls : MonoBehaviour
             //turret.transform.GetChild(0).Rotate(Input.GetAxis("Mouse Y"), 0, 0);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             if (Input.GetAxis("Mouse X") != 0)
             {
                 lookvalX += Input.GetAxis("Mouse X") * lookSensitivity;
