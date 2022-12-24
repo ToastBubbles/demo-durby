@@ -18,6 +18,7 @@ public class ArcadeCarControls : MonoBehaviour
     public float hoverHeight = 1.5f;
     public GameObject[] hoverPoints;
     public GameObject turret;
+    public GameObject chassis;
     public AudioSource engine;
     public float damage = 20;
     public Transform turrChaser;
@@ -349,10 +350,8 @@ public class ArcadeCarControls : MonoBehaviour
 
     }
 
-    private void zoomIn()
-    {
 
-    }
+
     IEnumerator FireCannon()
     {
         // object[] tempStorage = new object[2];
@@ -432,7 +431,7 @@ public class ArcadeCarControls : MonoBehaviour
         for (int i = 0; i < dustTrails.Length; i++)
         {
             var emission = dustTrails[i].emission;
-            emission.rate = new ParticleSystem.MinMaxCurve(emissionRate);
+            emission.rate = new ParticleSystem.MinMaxCurve(emissionRate);//update to new system
         }
 
         if (Mathf.Abs(thrust) > 0)
@@ -486,5 +485,10 @@ public class ArcadeCarControls : MonoBehaviour
         {
             body.velocity = body.velocity.normalized * maxVelocity;
         }
+    }
+    public void Defeated()
+    {
+        print("Destroyed!");
+        chassis.GetComponent<Renderer>().material.color = Color.black;
     }
 }

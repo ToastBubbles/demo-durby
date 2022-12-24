@@ -31,24 +31,7 @@ public class TankHealth : MonoBehaviour
         }
 
     }
-    bool ContainsOnly(List<string> myList, string val)
-    {
-        // List<string> approved = new List<string> { "Bob", "Amy" };
-        for (int i = 0; i < myList.Count; i++)
-        {
-            if (myList.Contains(val))
-            {
-                return true;
-            }
-        }
-        return false;
-        // {
-        //     foreach (item in myList) {
-        //         if (!approved.Contains(item)) return false;
-        //     }
-        // }
-        //return true;
-    }
+
 
     public void ApplyDamage(float damage)
     {
@@ -135,7 +118,16 @@ public class TankHealth : MonoBehaviour
     }
     public void Defeated()
     {
-        print("Destroyed!");
+
+        if (gameObject.tag == "Player")
+        {
+            gameObject.GetComponent<ArcadeCarControls>().Defeated();
+        }
+        else if (gameObject.tag == "Dummy")
+        {
+            gameObject.GetComponent<TestDamageDummy>().Defeated();
+
+        }
 
     }
 

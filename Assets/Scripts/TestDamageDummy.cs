@@ -6,6 +6,7 @@ public class TestDamageDummy : MonoBehaviour
 {
     public Transform player;
     public GameObject turret;
+    public GameObject chassis;
     private bool canFire = false;
 
     public Rigidbody bullet;
@@ -51,6 +52,11 @@ public class TestDamageDummy : MonoBehaviour
         bull.AddForce(bull.transform.forward * 5000);
         yield return new WaitForSeconds(delay);
         canFire = true;
+    }
+    public void Defeated()
+    {
+        print("Destroyed!");
+        chassis.GetComponent<Renderer>().material.color = Color.black;
     }
 
 
