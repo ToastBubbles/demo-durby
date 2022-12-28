@@ -101,107 +101,7 @@ public class ArcadeCarControls : MonoBehaviour
         else
         {
 
-            //turret.transform.GetChild(0).localRotation
-            //Vector3 direction = lookAtTarget.position - turret.transform.GetChild(0).position;
-            //Quaternion toRotation = Quaternion.FromToRotation(turret.transform.GetChild(0).forward, direction);
-            // turret.transform.GetChild(0).localRotation = Quaternion.Euler(Mathf.Lerp(turret.transform.GetChild(0).localRotation.x, toRotation.x, 1 * Time.time),0f,0f);
 
-            //Quaternion lookOnLook = Quaternion.LookRotation(lookAtTarget.position - turret.transform.GetChild(0).position);
-
-            //turret.transform.GetChild(0).rotation = Quaternion.Slerp(turret.transform.GetChild(0).rotation, lookOnLook, Time.deltaTime);
-            //turret.transform.GetChild(0).localRotation = Quaternion.Euler((Quaternion.Slerp(turret.transform.GetChild(0).rotation, lookOnLook, Time.deltaTime)).x,Quaternion.identity.y,Quaternion.identity.z);
-            //turret.transform.GetChild(0).localRotation =(Quaternion.Slerp(Quaternion.Euler(turret.transform.GetChild(0).rotation.x, Quaternion.identity.y, Quaternion.identity.z), lookOnLook, Time.deltaTime));
-            //turret.transform.Rotate(0f, Input.GetAxis("Mouse X") * 0.5f, 0f, Space.Self);
-            /*
-            var lookPos2 = lookAtTarget.position - turret.transform.position;
-            var lookPos = lookAtTarget.position - turret.transform.GetChild(0).position;
-            lookPos2.y = 0;
-            lookPos.x = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-            var rotation2 = Quaternion.LookRotation(lookPos2);
-            turret.transform.GetChild(0).localRotation = Quaternion.Slerp(turret.transform.GetChild(0).localRotation, rotation, Time.deltaTime *2);
-            turret.transform.localRotation = Quaternion.Slerp(turret.transform.localRotation, rotation2, Time.deltaTime * 2);*/
-
-
-
-            /*var lookPos2 = lookAtTarget.position - turret.transform.position;
-            var lookPos = lookAtTarget.position - turret.transform.GetChild(0).position;
-            lookPos2.y = 0;
-            lookPos.x = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-            var rotation2 = Quaternion.LookRotation(lookPos2);
-            turret.transform.GetChild(0).localRotation = rotation;
-            turret.transform.localRotation = rotation2;*/
-
-            //turret.transform.GetChild(0).LookAt(new Vector3(turret.transform.GetChild(0).position.x, lookAtTarget.position.y, lookAtTarget.position.z));
-            // turret.transform.GetChild(0).localRotation = Quaternion.Euler(turret.transform.GetChild(0).localRotation.x, turret.transform.localRotation.y, turret.transform.GetChild(0).localRotation.z);
-            //turret.transform.GetChild(0).localRotation = Quaternion.Euler(turret.transform.GetChild(0).rotation.x, turret.transform.GetChild(0).rotation.y, turret.transform.GetChild(0).rotation.z);
-            //turret.transform.GetChild(0).LookAt(new Vector3(turret.transform.GetChild(0).position.x, lookAtTarget.position.y, lookAtTarget.position.z));
-            //turret.transform.LookAt(new Vector3(lookAtTarget.position.x, turret.transform.position.x, lookAtTarget.position.z));
-            ////turret.transform.LookAt(new Vector3(lookAtTarget.position.x, lookAtTarget.position.y, lookAtTarget.position.z));
-            ///              
-            // turret.transform.rotation.SetLookRotation(lookAtTarget.position);
-            // Quaternion q = transform.rotation;
-            //  q.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, 0);
-            //  transform.rotation = q;
-
-
-            // Vector3 relativePos = lookAtTarget.position - turret.transform.position;
-
-            // Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-            // turret.transform.rotation = rotation;
-
-
-
-            // Vector3 relativePos = lookAtTarget.position - turret.transform.position;
-
-            // Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-
-            // turret.transform.rotation = rotation;
-
-            // turret.transform.localEulerAngles = new Vector3(Quaternion.identity.x, rotation.eulerAngles.y, Quaternion.identity.z);
-
-
-
-            // Vector3 relativePos = lookAtTarget.position - turret.transform.position;
-            // relativePos.x = transform.rotation.eulerAngles.x;
-            // relativePos.z = transform.rotation.eulerAngles.z;
-            // turret.transform.rotation = Quaternion.LookRotation(relativePos.normalized, Vector3.up);
-            // rotation.eulerAngles = new Vector3(this.transform.rotation.eulerAngles.x, rotation.eulerAngles.y, this.transform.rotation.eulerAngles.z);
-            //turret.transform.rotation = rotation;
-
-            // Quaternion q = turret.transform.GetChild(0).rotation;
-
-            // q.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, Quaternion.identity.z);
-
-            // turret.transform.rotation = q;
-            // Vector3 horz = new Vector3(lookAtTarget.position.x, turret.transform.position.y, lookAtTarget.position.z);
-            // Vector3 relativePos = lookAtTarget.position - transform.position;
-            // // turret.transform.LookAt(relativePos, Vector3.up);
-
-            // // turret.transform.Ro
-
-
-            // // turret.transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
-            // // turret.transform.GetChild(0).Rotate(Input.GetAxis("Mouse Y"), 0, 0);
-
-
-            // // turret.transform.Rotate(0, Mathf.Lerp(turret.transform.rotation.eulerAngles.y, 0, Time.deltaTime), 0);
-
-
-            // // Quaternion q = turret.transform.rotation;
-            // // Vector3 rot = new Vector3(0, Mathf.Lerp(turret.transform.localEulerAngles.y, (Mathf.Atan2(turret.transform.position.x - lookAtTarget.position.x, turret.transform.position.z - lookAtTarget.position.z) * (180 / Mathf.PI) + 180), Time.deltaTime), 0);
-            // // Debug.Log(Mathf.Atan2(turret.transform.position.y - lookAtTarget.position.y, turret.transform.position.x - lookAtTarget.position.x) * (180 / Mathf.PI));
-            // // q.eulerAngles = rot;
-            // // turret.transform.rotation = q;
-            // // turret.transform.GetChild(0).Rotate(Input.GetAxis("Mouse Y"), 0, 0);
-
-
-            // Quaternion q = turret.transform.localRotation;
-            // Vector3 rot = new Vector3(turret.transform.rotation.eulerAngles.x, Mathf.Atan2(turret.transform.position.x - lookAtTarget.position.x, turret.transform.position.z - lookAtTarget.position.z) * (180 / Mathf.PI) + 180, turret.transform.rotation.eulerAngles.z);
-
-            // q.eulerAngles = rot;
-            // turret.transform.rotation = q;
 
 
             ////////////////////////////
@@ -257,30 +157,6 @@ public class ArcadeCarControls : MonoBehaviour
             turret.transform.localRotation = Quaternion.Slerp(turret.transform.localRotation, eulerRotsX, Time.deltaTime * 5);
 
 
-
-
-
-            //rotation.eulerAngles = new Vector3(0, rotation.eulerAngles.y, 0);
-
-            // Quaternion worldRotation = turret.transform.parent.rotation * turret.transform.localRotation;
-            // turret.transform.eulerAngles = new Vector3(worldRotation.x, rotation.y, worldRotation.z);
-            /* Vector3 relativePosC = lookAtTarget.position - turret.transform.GetChild(0).position;
-             Quaternion rotationC = Quaternion.LookRotation(relativePosC, Vector3.up);
-             rotationC.eulerAngles = new Vector3(rotationC.eulerAngles.x, turret.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-             turret.transform.GetChild(0).rotation = rotationC;*/
-            //// turret.transform.localEulerAngles = new Vector3(0, turrChaser.rotation.eulerAngles.y, 0);
-            //Debug.Log(turret.transform.eulerAngles.y + " is turret " + turrChaser.localEulerAngles.y + " is temp");
-
-            /* Vector3 dir =lookAtTarget.position - transform.position;
-             Quaternion lookRot = Quaternion.LookRotation(dir);
-             Vector3 rot = Quaternion.Lerp(turret.transform.rotation, lookRot, Time.deltaTime * 1).eulerAngles;
-             turret.transform.rotation = Quaternion.Euler(turret.transform.rotation.x, rot.y, turret.transform.rotation.z);
-             turret.transform.GetChild(0).rotation = Quaternion.Euler(rot.x, rot.y, 0f);*/
-            // var lookPos = lookAtTarget.position - transform.position;
-            //lookPos.y = 0;
-            // var rotation = Quaternion.LookRotation(lookPos);
-            // turret.transform.localRotation = Quaternion.Slerp(turret.transform.rotation, rotation, Time.deltaTime );
-            // Debug.Log(turret.transform.eulerAngles.z + " is turret " + transform.eulerAngles.z + " is main");
 
         }
 
