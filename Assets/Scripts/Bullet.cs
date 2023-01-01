@@ -88,8 +88,12 @@ public class Bullet : MonoBehaviour
                 {
 
 
-                    if (hit.collider.tag == "Player" || hit.collider.tag == "Dummy")
+                    if (hit.collider.tag == "Player" || hit.collider.tag == "Dummy" || hit.collider.tag == "Tire")
                     {
+                        if (hit.collider.tag == "Tire")
+                        {
+                            Debug.Log("Hit tire");
+                        }
 
                         //Debug.Log(other.tag);
                         GameObject clone = Instantiate(smallExplosion, hit.point, transform.rotation);

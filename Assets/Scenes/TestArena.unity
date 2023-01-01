@@ -24744,7 +24744,7 @@ GameObject:
   - component: {fileID: 530586032004730939}
   m_Layer: 11
   m_Name: Cylinder.002
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25225,7 +25225,7 @@ GameObject:
   - component: {fileID: 1687403362771892525}
   m_Layer: 11
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25395,7 +25395,7 @@ GameObject:
   - component: {fileID: 2490194675482782316}
   m_Layer: 11
   m_Name: WFR
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25669,7 +25669,7 @@ GameObject:
   - component: {fileID: 3655000509976413054}
   m_Layer: 11
   m_Name: WFL
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26150,7 +26150,7 @@ GameObject:
   - component: {fileID: 6049664849658910240}
   m_Layer: 11
   m_Name: Cylinder.001
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26298,7 +26298,7 @@ GameObject:
   - component: {fileID: 6731993469823455291}
   m_Layer: 11
   m_Name: Cylinder.003
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26835,7 +26835,7 @@ GameObject:
   - component: {fileID: 8513859187384740943}
   m_Layer: 11
   m_Name: WBL
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26918,7 +26918,7 @@ GameObject:
   - component: {fileID: 8700725330199374444}
   m_Layer: 11
   m_Name: WBR
-  m_TagString: Untagged
+  m_TagString: Tire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

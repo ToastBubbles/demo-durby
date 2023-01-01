@@ -7,6 +7,7 @@ TagManager:
   - bullet
   - Dummy
   - Audio Manager
+  - Tire
   layers:
   - Default
   - TransparentFX
