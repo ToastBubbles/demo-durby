@@ -208,16 +208,11 @@ public class ArcadeCarControls : MonoBehaviour
 
     IEnumerator FireCannon()
     {
-        // object[] tempStorage = new object[2];
-        // tempStorage[0] = inv.Damage.Value;
-        // tempStorage[1] = inv.DamageEffects;
+
         float damageConvert = inv.Damage.Value / 5;
         Rigidbody bull = Instantiate(bullet, turret.transform.GetChild(0).GetChild(0).position, turret.transform.GetChild(0).GetChild(0).rotation) as Rigidbody;
         bull.transform.localScale = new Vector3(damageConvert, damageConvert, damageConvert);
-        ////bull.SendMessage("ApplyDamage", tempStorage);
         bull.GetComponent<Bullet>().ApplyDamage(inv.Damage.Value, inv.DamageEffects);
-        //bull.SendMessage("DamageType", inv.DamageEffects);
-        // Vector3 localForward = bull.transform.worldToLocalMatrix.MultiplyVector(bull.transform.forward);
         bull.AddForce(bull.transform.forward * 1000 * inv.BulletSpeed.Value);
         yield return new WaitForSeconds(delay * 5 / inv.FireRate.Value);
         canFire = true;
