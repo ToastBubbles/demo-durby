@@ -90,7 +90,7 @@ public class Bullet : MonoBehaviour
 
                     if (hit.collider.tag == "Player" || hit.collider.tag == "Dummy" || hit.collider.tag == "Tire")
                     {
-                        if (hit.collider.tag == "Tire")
+                        if (hit.collider.tag == "Tire" && dmgTypes.Contains("needle"))
                         {
                             Debug.Log("Hit tire");
                         }
