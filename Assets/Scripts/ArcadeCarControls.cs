@@ -17,6 +17,7 @@ public class ArcadeCarControls : MonoBehaviour
     public float gravityForce = 1000f;
     public float hoverHeight = 1.5f;
     public GameObject[] hoverPoints;
+    public bool[] flats; //goes fl, fr, rl, rr
     public GameObject turret;
     public GameObject chassis;
     public AudioSource engine;
