@@ -19022,6 +19022,7 @@ MonoBehaviour:
   - {fileID: 191508509}
   - {fileID: 314051653}
   - {fileID: 419919399}
+  flats: 
   turret: {fileID: 1320064878}
   chassis: {fileID: 2107458089}
   engine: {fileID: 2039158385}
@@ -24742,6 +24743,7 @@ GameObject:
   - component: {fileID: 6514809669653613527}
   - component: {fileID: 5320715840562047959}
   - component: {fileID: 530586032004730939}
+  - component: {fileID: 530586032004730940}
   m_Layer: 11
   m_Name: Cylinder.002
   m_TagString: Tire
@@ -24763,6 +24765,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8691780276856062721, guid: a62a89df37847374aa9b7d49fac0b393, type: 3}
+--- !u!114 &530586032004730940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530586032004730938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b2e9431af23fe4083ca6f28ea69997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFlat: 0
 --- !u!4 &543450652016572406
 Transform:
   m_ObjectHideFlags: 0
@@ -25223,6 +25238,7 @@ GameObject:
   - component: {fileID: 8046694901047365481}
   - component: {fileID: 5053157842412618227}
   - component: {fileID: 1687403362771892525}
+  - component: {fileID: 1687403362771892526}
   m_Layer: 11
   m_Name: Cylinder
   m_TagString: Tire
@@ -25244,6 +25260,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: a62a89df37847374aa9b7d49fac0b393, type: 3}
+--- !u!114 &1687403362771892526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687403362771892524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b2e9431af23fe4083ca6f28ea69997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFlat: 0
 --- !u!1 &1798291505690570493
 GameObject:
   m_ObjectHideFlags: 0
@@ -26148,6 +26177,7 @@ GameObject:
   - component: {fileID: 2077414769905051453}
   - component: {fileID: 5184228883786407830}
   - component: {fileID: 6049664849658910240}
+  - component: {fileID: 6049664849658910241}
   m_Layer: 11
   m_Name: Cylinder.001
   m_TagString: Tire
@@ -26169,6 +26199,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7387706064836869012, guid: a62a89df37847374aa9b7d49fac0b393, type: 3}
+--- !u!114 &6049664849658910241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049664849658910239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b2e9431af23fe4083ca6f28ea69997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFlat: 0
 --- !u!1001 &6386183670930118601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26296,6 +26339,7 @@ GameObject:
   - component: {fileID: 7427606391729537969}
   - component: {fileID: 3062219800044723349}
   - component: {fileID: 6731993469823455291}
+  - component: {fileID: 6731993469823455292}
   m_Layer: 11
   m_Name: Cylinder.003
   m_TagString: Tire
@@ -26317,6 +26361,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6239881831769578202, guid: a62a89df37847374aa9b7d49fac0b393, type: 3}
+--- !u!114 &6731993469823455292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731993469823455290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b2e9431af23fe4083ca6f28ea69997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFlat: 0
 --- !u!4 &6738450967997669292
 Transform:
   m_ObjectHideFlags: 0
