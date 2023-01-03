@@ -92,7 +92,8 @@ public class Bullet : MonoBehaviour
                     {
                         if (hit.collider.tag == "Tire" && dmgTypes.Contains("needle"))
                         {
-                            Debug.Log("Hit tire");
+                            
+                            hit.collider.GetComponent<TireCondition>().MakeFlat();
                         }
 
                         //Debug.Log(other.tag);
